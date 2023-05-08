@@ -1,10 +1,4 @@
 import Link from "next/link";
-import type {Metadata} from "next";
-
-export const metadata: Metadata = {
-	title: 'Account page',
-	description: 'Welcome to your account page'
-}
 
 const Account = () => {
 	return (

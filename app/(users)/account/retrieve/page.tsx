@@ -1,3 +1,10 @@
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+	title: 'Retrieve your account',
+	description: 'Retrieve your account'
+}
+
 const Retrieve = () => {
 	return (
 		<div>

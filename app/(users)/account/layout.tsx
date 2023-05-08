@@ -1,4 +1,10 @@
 import React from "react"
+import {Metadata} from "next"
+
+export const metadata: Metadata = {
+	title: 'Account page',
+	description: 'Welcome to your account page'
+}
 
 export default function AccountLayout({
 	children,
@@ -7,9 +13,6 @@ export default function AccountLayout({
 }) {
 	return (
 		<main>
-			<div>
-				<h1>account page from layout</h1>
-			</div>
 			<div>
 				{children}
 			</div>
