@@ -1,12 +1,14 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: 'Hungry',
+  description: 'Hungry homepage'
+}
 
 export default function Home() {
   return (
     <main>
-      <div>
-        <h1>Homepage</h1>
-      </div>
+      <h1>Homepage</h1>
     </main>
   )
 }

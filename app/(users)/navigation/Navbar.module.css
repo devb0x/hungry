@@ -1,0 +1,30 @@
+.navbar {
+	width: 90%;
+	max-width: 1440px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	padding: 0.5rem 1rem;
+	background-color: transparent;
+	background-color: sandybrown;
+}
+
+.home-link {
+	height: 100%;
+	width: fit-content;
+}
+
+.logo {
+	height: 100%;
+	width: fit-content;
+}
+
+.navbar-menu {
+	display: flex;
+	gap: 1rem;
+}
+.navbar-menu__link {
+	outline: 1px solid white;
+}

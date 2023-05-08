@@ -8,9 +8,9 @@ describe('<Navbar />', () => {
 		const component = render(<Navbar />)
 		expect(component).toBeTruthy()
 	})
-	it('Navbar should have the correct number of links for navigation', () => {
+	it('Navbar should have the correct number of links for navigation + 1 link from the logo', () => {
 		render(<Navbar />)
 		const links = document.getElementsByTagName("a")
-		expect(links.length).toBe(navLinks.length)
+		expect(links.length).toBe(navLinks.length + 1)
 	})
 })

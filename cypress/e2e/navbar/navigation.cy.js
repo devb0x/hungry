@@ -11,5 +11,8 @@ describe('Navigation', () => {
 
 		// the new page should contain a h1 with "account"
 		cy.get('h1').contains('account')
+
+		cy.get('a[href*="/"]').click({multiple: true})
+		cy.url().should('include', '')
 	})
 })
