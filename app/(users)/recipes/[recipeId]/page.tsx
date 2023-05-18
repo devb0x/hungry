@@ -4,6 +4,9 @@ import { Recipe } from "@/typings"
 import {notFound} from "next/navigation"
 import Image from "next/image"
 
+import classes from './recipeId.module.css'
+import RecipeIngredients from "@/app/components/Recipe/RecipeIngredients/RecipeIngredients";
+
 export const metadata: Metadata = {
 	title: 'Recipe By Id',
 	description: 'the detail of the recipe'
@@ -27,15 +30,41 @@ async function RecipeIdPage({ params: { recipeId } }: Props) {
 	const recipeData = await fetchRecipeById(recipeId)
 	const [recipe] = await Promise.all([recipeData])
 
+	console.log(typeof recipe)
+
 	if (!recipe) notFound()
 
 	return (
-		<div>
-			<h1>recipe by id page (id {recipeId})</h1>
-			<h2>{recipe.title}</h2>
+		<main>
+			<section>
+				<header className={`${classes['recipe-header']}`}>
+					<h1 className={`${classes['recipe-title']}`}>{recipe.title}</h1>
+					{recipe.diets ??
+						<ul className={`${classes['recipe-diets']}`}>
+							{recipe.diets?.map((diet, index) => (
+								<li
+									key={index}
+									className={`${classes['recipe-diet__item']}`}
+								>
+									{diet}
+								</li>
+							))}
+						</ul>
+					}
+					<Image
+						className={`${classes['recipe-image']}`}
+						src={recipe.image}
+						alt={recipe.title}
+						width={150}
+						height={150}
+					/>
+				</header>
+			</section>
+			<section>
+				<RecipeIngredients ingredients={recipe.extendedIngredients} id={recipe.id}/>
+			</section>
 			<div>{recipe.summary}</div>
-			<Image src={recipe.image} alt={recipe.title} width={150} height={150}/>
-		</div>
+		</main>
 	)
 }
 

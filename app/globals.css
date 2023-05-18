@@ -1,7 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* fonts */
+:root {
+  --text: 'Assistant', sans-serif;
+  --title: 'Dancing Script', cursive;
+  --playFairDisplay: 'Playfair Display', serif;
+  --playFairDisplaySC: 'Playfair Display SC', serif;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: var(--text);
+}
+
+h1, h2 {
+  font-family: var(--title);
 }
 
 html,
@@ -17,6 +32,11 @@ a {
 
 main {
   max-width: 1440px;
+  width: 90%;
   margin-inline: auto;
   margin-block: 3vh;
+}
+
+ul {
+  list-style: none;
 }

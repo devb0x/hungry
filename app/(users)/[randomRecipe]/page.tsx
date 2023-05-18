@@ -24,9 +24,14 @@ async function RandomRecipePage() {
 					return <p key={recipe[key][0].id}>{recipe[key][0].title}</p>
 				})}
 			<div style={{display: "flex"}}>
-				Is vegan: <span>{Object.keys(recipe).map((key, index) => {
+				Is vegetarian: <span>{Object.keys(recipe).map((key, index) => {
 					return (recipe[key][0].vegetarian ? <p>true</p> : <p>false</p>)
 				})}</span>
+			</div>
+			<div style={{display: "flex"}}>
+				Is vegan: <span>{Object.keys(recipe).map((key, index) => {
+				return (recipe[key][0].vegan ? <p>true</p> : <p>false</p>)
+			})}</span>
 			</div>
 			<div>
 				the recipe id is: {recipeId}

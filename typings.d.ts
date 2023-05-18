@@ -4,5 +4,7 @@ export type Recipe = {
 	image: string
 	summary: string
 	vegetarian: boolean
+	diets: any
+	extendedIngredients: any
 }
 

@@ -1,0 +1,31 @@
+.recipe-header {
+	display: flex;
+	flex-direction: column;
+}
+
+.recipe-title {
+	width: fit-content;
+	margin-bottom: 1vh;
+	font-size: 2.5rem;
+}
+
+.recipe-diets {
+	display: flex;
+	gap: 1rem;
+}
+
+.recipe-diet__item {
+	border-radius: 8px;
+	padding: 6px 8px;
+	background-color: green;
+	color: white;
+	font-size: 13px;
+	/*outline: 1px solid red;*/
+}
+
+.recipe-image {
+	margin-block: 2vh;
+	object-fit: cover;
+	width: 450px;
+	height: 450px;
+}

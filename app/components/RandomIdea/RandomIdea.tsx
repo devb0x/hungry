@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation"
+import classes from "./RandomIdea.module.css"
 
 const RandomIdea = () => {
 	const router = useRouter()
@@ -11,8 +12,14 @@ const RandomIdea = () => {
 	}
 
 	return (
-		<div onClick={nav}>
-			Random compo from components folder
+		<div className={`${classes['card']}`}>
+			<h2 className={`${classes['card-title']}`}>No idea today?</h2>
+			<div
+				onClick={nav}
+				className={`${classes['card-wrapper']}`}
+			>
+				Click here and discover a random recipe to try!
+			</div>
 		</div>
 	)
 }
