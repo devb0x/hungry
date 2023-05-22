@@ -15,8 +15,9 @@
   font-family: var(--text);
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: var(--title);
+  margin-bottom: 1rem;
 }
 
 html,
@@ -31,7 +32,7 @@ a {
 }
 
 main {
-  max-width: 1440px;
+  max-width: 44rem;
   width: 90%;
   margin-inline: auto;
   margin-block: 3vh;

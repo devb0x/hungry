@@ -20,12 +20,25 @@
 	background-color: green;
 	color: white;
 	font-size: 13px;
-	/*outline: 1px solid red;*/
+	text-transform: capitalize;
 }
 
 .recipe-image {
 	margin-block: 2vh;
-	object-fit: cover;
+	object-fit: contain;
 	width: 450px;
 	height: 450px;
+}
+
+.recipe-summary {
+	line-height: 1.5rem;
+	padding: 8px;
+	text-align: justify;
+	background-color: #f3f3f3;
+}
+
+.divider {
+	height: 4px;
+	background-color: black;
+	margin-block: 2rem;
 }

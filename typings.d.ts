@@ -6,5 +6,6 @@ export type Recipe = {
 	vegetarian: boolean
 	diets: any
 	extendedIngredients: any
+	analyzedInstructions: any
 }
 

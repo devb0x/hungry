@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import classes from './RecipeIngredients.module.css'
+
 const fetchIngredients = async (id) => {
 	const res = await fetch(
 		`https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${process.env.API_KEY}`
@@ -12,23 +14,32 @@ const RecipeIngredients = async (props) => {
 	const ingredientsData = await fetchIngredients(props.id)
 	const [ingredients] = await Promise.all([ingredientsData])
 
-	console.log(ingredients)
-
 	return (
 		<div>
 			<h2>
 				Ingredients
 			</h2>
-			<div>
+			<ul className={`${classes['ingredients-list']}`}>
 				{ingredients.ingredients.map((el, index) => (
-					<div key={index} style={{display: "flex"}}>
-						<Image src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} alt={el.name} width={150} height={150}/>
-						<div>
+					<li key={index} className={`${classes['ingredients-list__item']}`}>
+						<picture>
+							<Image
+								className={`${classes['ingredient-image']}`}
+								src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`}
+								alt={el.name}
+								width={100}
+								height={100}
+							/>
+						</picture>
+						<span className={`${classes['ingredient-label']}`}>
 							{el.name}
-						</div>
-					</div>
+						</span>
+						<span className={`${classes['ingredient-qte']}`}>
+							{el.amount.metric.value} {el.amount.metric.unit}
+						</span>
+					</li>
 				))}
-			</div>
+			</ul>
 		</div>
 	)
 }
