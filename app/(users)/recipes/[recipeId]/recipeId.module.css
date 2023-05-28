@@ -30,6 +30,20 @@
 	height: 450px;
 }
 
+.recipe-numbers-data {
+	display: flex;
+	justify-content: space-around;
+	gap: 1rem;
+	padding-block: 1rem;
+}
+
+.recipe-numbers-data > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+
 .recipe-summary {
 	line-height: 1.5rem;
 	padding: 8px;

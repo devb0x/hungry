@@ -1,26 +1,45 @@
-import Image from "next/image";
+'use client'
 
+import Image from "next/image"
 import classes from './RecipeIngredients.module.css'
+import { useState } from "react"
+import dollarIcon from '../../../../public/assets/icons/dollar-broken.svg'
 
-const fetchIngredients = async (id) => {
-	const res = await fetch(
-		`https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${process.env.API_KEY}`
-	)
-	const ingredients = await res.json()
-	return ingredients
-}
-
-const RecipeIngredients = async (props) => {
-	const ingredientsData = await fetchIngredients(props.id)
-	const [ingredients] = await Promise.all([ingredientsData])
+const RecipeIngredients = (props) => {
+	const [serving, setServing] = useState(props.servings)
+	const [ingredients, setIngredients] = useState(props.ingredients[0])
 
 	return (
 		<div>
-			<h2>
-				Ingredients
-			</h2>
+			<header className={`${classes['ingredients-header']}`}>
+				<h2>
+					Ingredients
+				</h2>
+				<div className={`${classes['ingredients-calc']}`}>
+					<div>
+						<button
+							onClick={() => {
+								setServing(serving - 1)
+							}}
+							disabled={serving <= 1}
+						>
+							-
+						</button>
+					</div>
+					<div>
+						{serving} {serving < 2 ? "serving" : "servings"}
+					</div>
+					<button onClick={() => (
+						setServing(serving + 1)
+					)}>+</button>
+				</div>
+				<div>
+					<Image src={dollarIcon} alt={"dollar"} />{props.priceServing * serving} $
+				</div>
+
+			</header>
 			<ul className={`${classes['ingredients-list']}`}>
-				{ingredients.ingredients.map((el, index) => (
+				{ingredients.map((el, index) => (
 					<li key={index} className={`${classes['ingredients-list__item']}`}>
 						<picture>
 							<Image
@@ -35,7 +54,7 @@ const RecipeIngredients = async (props) => {
 							{el.name}
 						</span>
 						<span className={`${classes['ingredient-qte']}`}>
-							{el.amount.metric.value} {el.amount.metric.unit}
+							{((el.amount.metric.value / props.servings) * serving).toFixed(2)} {el.amount.metric.unit}
 						</span>
 					</li>
 				))}

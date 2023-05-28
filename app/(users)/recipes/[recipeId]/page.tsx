@@ -3,6 +3,9 @@ import { Metadata } from "next"
 import { Recipe } from "@/typings"
 import {notFound} from "next/navigation"
 import Image from "next/image"
+import clock from "../../../../public/assets/icons/clock-line.svg"
+import heart from "../../../../public/assets/icons/health-linear.svg"
+import dollar from "../../../../public/assets/icons/mood-dollar.svg"
 
 import classes from './recipeId.module.css'
 import RecipeIngredients from "@/app/components/Recipe/RecipeIngredients/RecipeIngredients";
@@ -27,9 +30,19 @@ const fetchRecipeById = async (recipeId: string) => {
 	return recipe
 }
 
+const fetchIngredients = async (id) => {
+	const res = await fetch(
+		`https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${process.env.API_KEY}`
+	)
+	const ingredients = await res.json()
+	return ingredients
+}
+
 async function RecipeIdPage({ params: { recipeId } }: Props) {
 	const recipeData = await fetchRecipeById(recipeId)
 	const [recipe] = await Promise.all([recipeData])
+	const ingredientsData = await fetchIngredients(recipeId)
+	const [ingredients] = await Promise.all([ingredientsData])
 
 	if (!recipe) notFound()
 
@@ -61,10 +74,39 @@ async function RecipeIdPage({ params: { recipeId } }: Props) {
 							height={150}
 						/>
 					</picture>
+					<div className={`${classes['recipe-numbers-data']}`}>
+						<div>
+							<Image
+								src={clock} alt={"clock"}
+								height={24} width={24}
+							/>
+							{recipe.readyInMinutes}min
+						</div>
+						<div>
+							<Image
+								src={heart} alt={"heart"}
+								height={24}
+								width={24}
+							/>{recipe.healthScore}
+						</div>
+						<div>
+							<Image
+								src={dollar} alt={"dollar"}
+								height={24} width={24}
+							/>
+							<span>{(recipe.pricePerServing / 100).toFixed(2)}$/serving</span>
+						</div>
+					</div>
 				</header>
 			</section>
+			<hr className={`${classes['divider']}`}/>
 			<section>
-				<RecipeIngredients ingredients={recipe.extendedIngredients} id={recipe.id}/>
+				<RecipeIngredients
+					id={recipe.id}
+					priceServing={(recipe.pricePerServing / 100).toFixed(2)}
+					servings={recipe.servings}
+					ingredients={[ingredients.ingredients]}
+				/>
 			</section>
 			<hr className={`${classes['divider']}`}/>
 			<div className={`${classes['recipe-summary']}`}>{summary}</div>

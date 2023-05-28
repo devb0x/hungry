@@ -1,3 +1,18 @@
+.ingredients-header {
+	display: flex;
+	align-items: center;
+}
+
+.ingredients-header h2 {
+	margin: 0;
+}
+
+.ingredients-calc {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .ingredients-list {
 	display: flex;
 	gap: 1rem;
